@@ -9,3 +9,14 @@ body {
 }
 /* #root {
 } */
+.open {
+  display: block !important;
+}
+
+.open-flex {
+  display: flex !important;
+}
+
+.close {
+  display: none !important;
+}
