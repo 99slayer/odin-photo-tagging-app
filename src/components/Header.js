@@ -63,11 +63,6 @@ export const Header = () => {
             <button onClick={() => { openScreen('gamehelp') }}>Game Help</button>
           </div>
         </div>
-        <div id="target-cont">
-          <p>target one</p>
-          <p>target two</p>
-          <p>target three</p>
-        </div>
         <HighScores isOpen={openHighScores} closeFunc={closeScreen} />
         <GameHelp isOpen={openGameHelp} closeFunc={closeScreen} />
       </div>
