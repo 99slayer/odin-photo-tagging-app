@@ -1,5 +1,6 @@
 {
   "env": {
+    "jest": true,
     "browser": true,
     "es2021": true
   },
@@ -10,5 +11,7 @@
     "sourceType": "module"
   },
   "plugins": ["react"],
-  "rules": {}
+  "rules": {
+    "react/prop-types": 0
+  }
 }
