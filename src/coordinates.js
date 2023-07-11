@@ -28,9 +28,13 @@ export const coordinates = {
   convert(coordinates, currentImageSize) {
     const defaultWidth = 3030;
     const defaultHeight = 1952;
+    const headerHeight = 80 + 10;
     const convertedCoordinates = {
       x: Math.round(defaultWidth * (coordinates.x / currentImageSize.width)),
-      y: Math.round(defaultHeight * (coordinates.y / currentImageSize.height)),
+      y: Math.round(
+        defaultHeight *
+          ((coordinates.y - headerHeight) / currentImageSize.height)
+      ),
     };
 
     return convertedCoordinates;
