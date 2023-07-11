@@ -12,6 +12,7 @@ export const Main = (props) => {
     setTargetX,
     gamescreenPosition,
     setGamescreenX,
+    verifyTarget,
   } = props;
 
   const [gameStart, setGameStart] = useState(false);
@@ -34,14 +35,20 @@ export const Main = (props) => {
     e.preventDefault();
 
     let mouseDown = true;
-    let moved = false;
-    let movePos = {
+    // const hasMoved = {
+    //   x: e.clientX,
+    //   y: e.clientY,
+    // };
+    const mouseDownPos = {
+      x: e.clientX,
+      y: e.clientY,
+    };
+    const movePos = {
       x: e.pageX,
       y: e.pageY,
     };
 
     e.target.onmousemove = (e) => {
-      moved = true;
       if (mouseDown) {
         window.scrollTo(
           Math.round(window.scrollX + (movePos.x - e.pageX)),
@@ -53,12 +60,25 @@ export const Main = (props) => {
     };
 
     e.target.onmouseup = (e) => {
-      if (!moved) {
+      // Allows the user a bit of leeway when clicking a target.
+      // So if they accidentally drag the mouse a little the dropdown menu will still appear.
+      const withinVariance = (variance, startPos, endPos) => {
+        if (endPos.x < (startPos.x + variance) && endPos.y < (startPos.y + variance)) {
+          if (endPos.x > (startPos.x - variance) && endPos.y > (startPos.y - variance)) {
+            return true;
+          };
+        };
+      };
+      const mouseUpPos = {
+        x: e.clientX,
+        y: e.clientY,
+      };
+
+      if (withinVariance(10, mouseDownPos, mouseUpPos)) {
         clickDropDown(e);
-      }
+      };
 
       mouseDown = false;
-      moved = false;
     };
 
     e.target.onmouseleave = (e) => {
@@ -104,10 +124,6 @@ export const Main = (props) => {
     };
 
     setDisplayDropDown(true);
-    // change this to plain coords and do the calculations for top/left in clickdropdown?
-    // that way the same state can be used for checking if the target is a hit
-    // **START HERE**
-    // **DO SOME CLEAN UP AND COMMIT STUFF FIRST**
     setDropDownPosition({
       x: clickCoordinates.x,
       y: clickCoordinates.y,
@@ -176,6 +192,7 @@ export const Main = (props) => {
       <ClickDropDown
         displayDropDown={displayDropDown}
         dropDownPosition={dropDownPosition}
+        verifyTarget={verifyTarget}
       />
     </div>
   );
