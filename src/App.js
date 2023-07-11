@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./styles/App.css";
+import { coordinates } from "./coordinates";
+import { targetPositions } from "./targetPositions";
 import { Header } from "./components/Header";
 import { Main } from "./components/Main";
 import { Footer } from "./components/Footer";
@@ -15,6 +17,11 @@ function App() {
     x: null,
     y: 80,
   });
+  const [gamescreenPosition, setGamescreenPosition] = useState(
+    (document.querySelector("html").clientWidth -
+      document.querySelector("html").clientWidth * 0.7) /
+      2
+  );
 
   useEffect(() => {
     // Changes the app components width value depending on different element sizes.
@@ -34,6 +41,7 @@ function App() {
 
       setBtnX();
       setTargetX();
+      setGamescreenX();
     };
 
     // Changes zoom button, target, and gamescreenbtn top values, based on how much the user has scrolled in the y axis.
@@ -72,6 +80,14 @@ function App() {
     }));
   };
 
+  const setGamescreenX = () => {
+    setGamescreenPosition(
+      (document.querySelector("html").clientWidth -
+        document.querySelector("html").clientWidth * 0.7) /
+        2
+    );
+  };
+
   const setBtnX = () => {
     if (
       Math.round(document.querySelector("body").clientHeight) >
@@ -100,6 +116,26 @@ function App() {
     }
   };
 
+  const verifyTarget = (coords, target) => {
+    switch (target) {
+      case "chameleon":
+        console.log(coordinates.validate(targetPositions.chameleon, coords));
+        break;
+
+      case "donkey":
+        console.log(coordinates.validate(targetPositions.donkey, coords));
+        break;
+
+      case "cat":
+        console.log(coordinates.validate(targetPositions.cat, coords));
+        break;
+
+      default:
+        console.error("Invalid target parameter.");
+        break;
+    }
+  };
+
   return (
     <div id="app-component" className={changeWidth ? "app-max" : ""}>
       <Header />
@@ -109,6 +145,9 @@ function App() {
         btnPosition={btnPosition}
         targetPosition={targetPosition}
         setTargetX={setTargetX}
+        gamescreenPosition={gamescreenPosition}
+        setGamescreenX={setGamescreenX}
+        verifyTarget={verifyTarget}
       />
       <Footer />
     </div>
