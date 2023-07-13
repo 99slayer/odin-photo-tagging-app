@@ -1,32 +1,32 @@
 export const targetPositions = {
   chameleon: {
     x: {
-      low: 1414,
-      high: 1455,
+      low: 1410,
+      high: 1460,
     },
     y: {
-      low: 1908,
-      high: 1967,
+      low: 1750,
+      high: 1820,
     },
   },
   donkey: {
     x: {
-      low: 1300,
-      high: 1376,
+      low: 1298,
+      high: 1380,
     },
     y: {
-      low: 1058,
-      high: 1151,
+      low: 912,
+      high: 1007,
     },
   },
   cat: {
     x: {
-      low: 1439,
-      high: 1492,
+      low: 1438,
+      high: 1495,
     },
     y: {
-      low: 999,
-      high: 1065,
+      low: 852,
+      high: 916,
     },
   },
 };
