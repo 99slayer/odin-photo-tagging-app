@@ -1,13 +1,31 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "../styles/HighScores.css";
+import useComponentVisible from "../hooks/useComponentVisible";
 
 export const HighScores = (props) => {
   const { isOpen, closeFunc, gamescreenPosition } = props;
+
+  const { ref, isComponentVisible, setIsComponentVisible } =
+    useComponentVisible(false);
+
+  // Closes highscore menu if the user clicks outside of it.
+  useEffect(() => {
+    if (isOpen) {
+      setIsComponentVisible(true);
+    }
+  }, [isOpen]);
+
+  useEffect(() => {
+    if (isOpen && !isComponentVisible) {
+      closeFunc("highscores");
+    }
+  }, [isComponentVisible]);
 
   return (
     <div
       id="highscores-component"
       className={isOpen ? "open-flex" : ""}
+      ref={ref}
       data-testid="highscore-screen"
       style={{ left: gamescreenPosition }}
     >
