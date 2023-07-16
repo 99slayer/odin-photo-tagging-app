@@ -8,6 +8,7 @@ import { Footer } from "./components/Footer";
 
 function App() {
   const [changeWidth, setChangeWidth] = useState(false);
+  const [gameStart, setGameStart] = useState(false);
   const [zoomPosition, setZoomPosition] = useState(80);
   const [btnPosition, setBtnPosition] = useState({
     x: document.querySelector("html").clientWidth - 60,
@@ -24,8 +25,12 @@ function App() {
   );
 
   useEffect(() => {
+    setX();
+  }, [changeWidth, gameStart]);
+
+  useEffect(() => {
     // Changes the app components width value depending on different element sizes.
-    // Also repositions the target and gamescreen btn elements on window resize.
+    // Also repositions various elements on window resize.
     window.onresize = () => {
       if (
         document.getElementById("app-component").offsetWidth <
@@ -39,9 +44,7 @@ function App() {
         setChangeWidth(true);
       }
 
-      setBtnX();
-      setTargetX();
-      setGamescreenX();
+      setX();
     };
 
     // Changes zoom button, target, and gamescreenbtn top values, based on how much the user has scrolled in the y axis.
@@ -69,8 +72,12 @@ function App() {
     };
   });
 
-  // Keeps target element centered on window resize or zoom level change
+  // Centers target element along the x axis.
   const setTargetX = () => {
+    if (document.getElementById("target-cont").offsetWidth === 0) {
+      return;
+    }
+
     setTargetPosition((prev) => ({
       ...prev,
       x:
@@ -80,6 +87,7 @@ function App() {
     }));
   };
 
+  // Centers gamescreen element along the x axis.
   const setGamescreenX = () => {
     setGamescreenPosition(
       (document.querySelector("html").clientWidth -
@@ -88,11 +96,9 @@ function App() {
     );
   };
 
+  // Centers gamescreen buttons along the x axis.
   const setBtnX = () => {
-    if (
-      Math.round(document.querySelector("body").clientHeight) >
-      Math.round(window.innerHeight)
-    ) {
+    if (document.querySelector("body").clientHeight > window.innerHeight) {
       setBtnPosition((prev) => ({
         ...prev,
         x:
@@ -108,12 +114,19 @@ function App() {
     }
   };
 
+  const setX = () => {
+    setTargetX();
+    setGamescreenX();
+    setBtnX();
+  };
+
   const checkImgWidth = (windowWidth, imageWidth) => {
     if (imageWidth > windowWidth) {
       setChangeWidth(true);
     } else if (imageWidth <= windowWidth) {
       setChangeWidth(false);
     }
+    console.log("image checked");
   };
 
   const verifyTarget = (coords, target) => {
@@ -141,12 +154,12 @@ function App() {
       <Header />
       <Main
         checkImgWidth={checkImgWidth}
+        gameStart={gameStart}
+        setGameStart={setGameStart}
         zoomPosition={zoomPosition}
         btnPosition={btnPosition}
         targetPosition={targetPosition}
-        setTargetX={setTargetX}
         gamescreenPosition={gamescreenPosition}
-        setGamescreenX={setGamescreenX}
         verifyTarget={verifyTarget}
       />
       <Footer />

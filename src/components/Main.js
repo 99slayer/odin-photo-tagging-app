@@ -10,16 +10,15 @@ import "../styles/Main.css";
 export const Main = (props) => {
   const {
     checkImgWidth,
+    gameStart,
+    setGameStart,
     zoomPosition,
     btnPosition,
     targetPosition,
-    setTargetX,
     gamescreenPosition,
-    setGamescreenX,
     verifyTarget,
   } = props;
 
-  const [gameStart, setGameStart] = useState(false);
   const [imgWidth, setImgWidth] = useState(null);
   const [displayDropDown, setDisplayDropDown] = useState(false);
   const [gamescreenOpen, setGamescreenOpen] = useState(false);
@@ -47,8 +46,6 @@ export const Main = (props) => {
       <Start gameStart={gameStart} setGameStart={setGameStart} />
       <ZoomButtons
         setImgWidth={setImgWidth}
-        setTargetX={setTargetX}
-        setGamescreenX={setGamescreenX}
         gameStart={gameStart}
         zoomPosition={zoomPosition}
       />

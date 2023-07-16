@@ -2,8 +2,7 @@ import React from "react";
 import "../styles/ZoomButtons.css";
 
 export const ZoomButtons = (props) => {
-  const { setImgWidth, setTargetX, setGamescreenX, gameStart, zoomPosition } =
-    props;
+  const { setImgWidth, gameStart, zoomPosition } = props;
 
   const zoomIn = () => {
     if (document.getElementById("image").offsetWidth + 500 <= 5000) {
@@ -11,10 +10,6 @@ export const ZoomButtons = (props) => {
     } else {
       setImgWidth(5000);
     }
-
-    // Should I use context for these functions?
-    setTargetX();
-    setGamescreenX();
   };
 
   const zoomOut = () => {
@@ -26,9 +21,6 @@ export const ZoomButtons = (props) => {
     } else {
       setImgWidth(document.getElementById("image").offsetWidth - 500);
     }
-
-    setTargetX();
-    setGamescreenX();
   };
 
   return (
