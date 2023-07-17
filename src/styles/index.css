@@ -5,7 +5,7 @@
   font-family: Arial, Helvetica, sans-serif;
 }
 body {
-  background-color: rgb(134, 87, 221);
+  background-color: rgb(243, 243, 243);
 }
 /* #root {
 } */
@@ -17,6 +17,10 @@ body {
   display: flex !important;
 }
 
-.close {
+.closed {
   display: none !important;
 }
+
+/* .material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 0, 'GRAD' 0, 'opsz' NaN;
+} */

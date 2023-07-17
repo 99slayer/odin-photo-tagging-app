@@ -1,35 +1,106 @@
 #main-component {
-  padding: 10px;
+  /* height: 100%; */
+  align-self: stretch;
+  position: relative;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   gap: 10px;
 }
 
-#start-cont {
+/* #start-cont {
+  align-self: center;
+  margin-top: 10px;
   padding: 10px;
   width: 700px;
   height: 260px;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
-  gap: 10px;
-  background-color: gray;
+  gap: 20px;
+  background-color: rgb(47, 98, 192);
   border-radius: 20px;
 }
 
-/* #main-start-btn {} */
-
-#target-cont {
-  padding: 20px;
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-  font-size: 1.6em;
+#start-text {
   color: white;
-  background-color: rgb(67, 201, 167);
+  font-size: 1.4em;
 }
 
-#main-cont {
-  display: none;
+#start-btn {
+  padding: 10px 20px 10px 20px;
+  font-size: 1em;
+  font-weight: 900;
+  border: none;
+  border-radius: 14px;
 }
+
+#start-btn:hover {
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px,
+    rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+  cursor: pointer;
+}
+
+#start-btn:active {
+  color: white;
+} */
+
+/* #target-cont {
+  position: fixed;
+  align-self: center;
+  padding: 10px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  font-size: 1.2em;
+  color: white;
+}
+
+.target {
+  padding: 10px 20px 10px 20px;
+  background-color: gray;
+  border-radius: 30px;
+} */
+
+/* #zoom-btn-cont {
+  padding: 10px;
+  position: fixed;
+  top: 80px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.zoom-btn {
+  height: 40px;
+  width: 40px;
+  color: white;
+  font-size: 1.3em;
+  font-weight: 900;
+  background-color: gray;
+  border: none;
+  border-radius: 100px;
+}
+
+.zoom-btn:hover {
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px,
+    rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+  cursor: pointer;
+  outline: 2px solid white;
+}
+
+#zoom-out-btn {
+  padding-bottom: 4px;
+} */
+
+/* #image-cont {
+  display: flex;
+  align-items: center;
+  cursor: all-scroll;
+  overflow: auto;
+}
+
+#image-cont img {
+  min-width: 100%;
+  width: 100%;
+} */

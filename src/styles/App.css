@@ -1,9 +1,17 @@
 #app-component {
+  /* needs to grow when resized */
   position: relative;
-  min-width: 680px;
-  /* vv?? */
   min-height: 100vh;
+  width: 100%;
+
+  /* need to switch on width: max-content once image exceeds screen */
+
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: stretch;
+}
+
+/* v should be screen - maxcontent */
+.app-max {
+  width: max-content !important;
 }

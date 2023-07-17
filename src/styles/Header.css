@@ -1,33 +1,13 @@
 #header-component {
-  position: sticky;
-  top: 0;
-  align-self: stretch;
-  /* height: 160px; */
-}
-
-#header-cont {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 10px;
-}
-
-#heading-cont {
+  height: 80px;
   align-self: stretch;
   padding: 10px;
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  background-color: rgb(66, 52, 145);
+  background-color: rgb(20, 213, 219);
 }
 
 #heading {
   font-size: 3em;
   color: white;
-}
-
-#header-btns {
-  display: flex;
-  gap: 10px;
 }

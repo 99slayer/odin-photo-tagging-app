@@ -1,0 +1,16 @@
+#target-cont {
+  position: fixed;
+  align-self: center;
+  padding: 10px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  font-size: 1.2em;
+  color: white;
+}
+
+.target {
+  padding: 10px 20px 10px 20px;
+  background-color: gray;
+  border-radius: 30px;
+}

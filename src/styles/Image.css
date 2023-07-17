@@ -1,0 +1,11 @@
+#image-cont {
+  display: flex;
+  align-items: center;
+  cursor: all-scroll;
+  overflow: auto;
+}
+
+#image-cont img {
+  min-width: 100%;
+  width: 100%;
+}

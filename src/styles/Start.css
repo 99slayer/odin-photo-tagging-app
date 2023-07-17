@@ -1,0 +1,37 @@
+#start-cont {
+  align-self: center;
+  margin-top: 10px;
+  padding: 10px;
+  width: 700px;
+  height: 260px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  background-color: rgb(47, 98, 192);
+  border-radius: 20px;
+}
+
+#start-text {
+  color: white;
+  font-size: 1.4em;
+}
+
+#start-btn {
+  padding: 10px 20px 10px 20px;
+  font-size: 1em;
+  font-weight: 900;
+  border: none;
+  border-radius: 14px;
+}
+
+#start-btn:hover {
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px,
+    rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+  cursor: pointer;
+}
+
+#start-btn:active {
+  color: white;
+}
