@@ -8,16 +8,8 @@ import { ClickDropDown } from "./ClickDropDown";
 import "../styles/Main.css";
 
 export const Main = (props) => {
-  const {
-    checkImgWidth,
-    gameStart,
-    setGameStart,
-    zoomPosition,
-    btnPosition,
-    targetPosition,
-    gamescreenPosition,
-    verifyTarget,
-  } = props;
+  const { changeWidth, checkImgWidth, gameStart, setGameStart, verifyTarget } =
+    props;
 
   const [imgWidth, setImgWidth] = useState(null);
   const [displayDropDown, setDisplayDropDown] = useState(false);
@@ -43,17 +35,12 @@ export const Main = (props) => {
 
   return (
     <div id="main-component" data-testid="main-component">
-      <Start gameStart={gameStart} setGameStart={setGameStart} />
-      <ZoomButtons
-        setImgWidth={setImgWidth}
-        gameStart={gameStart}
-        zoomPosition={zoomPosition}
-      />
-      <Targets gameStart={gameStart} targetPosition={targetPosition} />
+      <Start setGameStart={setGameStart} />
+      <ZoomButtons setImgWidth={setImgWidth} gameStart={gameStart} />
+      <Targets changeWidth={changeWidth} gameStart={gameStart} />
       <GameScreen
+        changeWidth={changeWidth}
         gameStart={gameStart}
-        btnPosition={btnPosition}
-        gamescreenPosition={gamescreenPosition}
         setGamescreenOpen={setGamescreenOpen}
       />
       <Image
