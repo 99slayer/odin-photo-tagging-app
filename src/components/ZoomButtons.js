@@ -1,8 +1,30 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "../styles/ZoomButtons.css";
 
 export const ZoomButtons = (props) => {
-  const { setImgWidth, gameStart, zoomPosition } = props;
+  const { setImgWidth, gameStart } = props;
+
+  const [position, setPosition] = useState(80);
+
+  useEffect(() => {
+    window.addEventListener("scroll", setY, true);
+    return () => {
+      window.removeEventListener("scroll", setY, true);
+    };
+  }, []);
+
+  const setY = (e) => {
+    const headerHeight = 80;
+    let headerOffset;
+
+    if (window.scrollY > headerHeight) {
+      headerOffset = 0;
+    } else if (window.scrollY > 0) {
+      headerOffset = Math.round(headerHeight - window.scrollY);
+    }
+
+    setPosition(headerOffset);
+  };
 
   const zoomIn = () => {
     if (document.getElementById("image").offsetWidth + 500 <= 5000) {
@@ -27,7 +49,7 @@ export const ZoomButtons = (props) => {
     <div
       id="zoom-btn-cont"
       className={gameStart ? "open-flex" : "closed"}
-      style={{ top: `${zoomPosition}px` }}
+      style={{ top: `${position}px` }}
     >
       <button id="zoom-in-btn" className="zoom-btn" onClick={zoomIn}>
         <span>+</span>

@@ -1,56 +1,70 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { HighScores } from "./HighScores";
 import { GameHelp } from "./GameHelp";
 import "../styles/GameScreen.css";
 
 export const GameScreen = (props) => {
-  const { gameStart, btnPosition, gamescreenPosition } = props;
-  const [openHighScores, setOpenHighScores] = useState(false);
-  const [openGameHelp, setOpenGameHelp] = useState(false);
+  const { changeWidth, gameStart, setGamescreenOpen } = props;
 
-  const openScreen = (btn) => {
-    switch (btn) {
-      case "highscores":
-        if (openHighScores) {
-          break;
-        } else if (openGameHelp) {
-          setOpenGameHelp(false);
-          setOpenHighScores(true);
-          break;
-        } else {
-          setOpenHighScores(true);
-          break;
-        }
+  const [open, setOpen] = useState(null);
+  const [btnPosition, setBtnPosition] = useState({
+    x: document.querySelector("html").clientWidth - 60,
+    y: 80,
+  });
 
-      case "gamehelp":
-        if (openGameHelp) {
-          break;
-        } else if (openHighScores) {
-          setOpenHighScores(false);
-          setOpenGameHelp(true);
-          break;
-        } else {
-          setOpenGameHelp(true);
-          break;
-        }
+  useEffect(() => {
+    setBtnX();
+  }, [changeWidth, gameStart]);
 
-      default:
-        console.log("No case match.");
-        break;
+  useEffect(() => {
+    window.addEventListener("resize", setBtnX, true);
+    window.addEventListener("scroll", setBtnY, true);
+    return () => {
+      window.removeEventListener("resize", setBtnX, true);
+      window.removeEventListener("scroll", setBtnY, true);
+    };
+  }, []);
+
+  // Stops the user from opening the dropdown menu if a gamescreen is open.
+  useEffect(() => {
+    if (!open) {
+      setGamescreenOpen(false);
+    } else {
+      setGamescreenOpen(true);
+    }
+  }, [open]);
+
+  const setBtnX = (e) => {
+    if (document.querySelector("body").clientHeight > window.innerHeight) {
+      setBtnPosition((prev) => ({
+        ...prev,
+        x:
+          window.innerWidth -
+          (60 +
+            (window.innerWidth - document.querySelector("html").clientWidth)),
+      }));
+    } else {
+      setBtnPosition((prev) => ({
+        ...prev,
+        x: document.querySelector("html").clientWidth - 60,
+      }));
     }
   };
 
-  const closeScreen = (btn) => {
-    switch (btn) {
-      case "highscores":
-        setOpenHighScores(false);
-        break;
-      case "gamehelp":
-        setOpenGameHelp(false);
-        break;
-      default:
-        console.log(`ERROR: problem closing screen ${btn}.`);
+  const setBtnY = (e) => {
+    const headerHeight = 80;
+    let headerOffset;
+
+    if (window.scrollY > headerHeight) {
+      headerOffset = 0;
+    } else if (window.scrollY > 0) {
+      headerOffset = Math.round(headerHeight - window.scrollY);
     }
+
+    setBtnPosition((prev) => ({
+      ...prev,
+      y: headerOffset,
+    }));
   };
 
   return (
@@ -68,8 +82,9 @@ export const GameScreen = (props) => {
         <button
           id="highscore-btn"
           className="game-screen-btn"
+          data-testid="highscore-btn"
           onClick={() => {
-            openScreen("highscores");
+            setOpen("highscores");
           }}
         >
           <span className="material-symbols-outlined">sort</span>
@@ -77,23 +92,16 @@ export const GameScreen = (props) => {
         <button
           id="gamehelp-btn"
           className="game-screen-btn"
+          data-testid="gamehelp-btn"
           onClick={() => {
-            openScreen("gamehelp");
+            setOpen("gamehelp");
           }}
         >
           <span className="material-symbols-outlined">info</span>
         </button>
       </div>
-      <HighScores
-        isOpen={openHighScores}
-        closeFunc={closeScreen}
-        gamescreenPosition={gamescreenPosition}
-      />
-      <GameHelp
-        isOpen={openGameHelp}
-        closeFunc={closeScreen}
-        gamescreenPosition={gamescreenPosition}
-      />
+      <HighScores open={open} setOpen={setOpen} />
+      <GameHelp open={open} setOpen={setOpen} />
     </div>
   );
 };

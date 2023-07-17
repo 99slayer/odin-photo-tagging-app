@@ -1,40 +1,61 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import "../styles/GameHelp.css";
 import useComponentVisible from "../hooks/useComponentVisible";
 
 export const GameHelp = (props) => {
-  const { isOpen, closeFunc, gamescreenPosition } = props;
+  const { open, setOpen } = props;
 
   const { ref, isComponentVisible, setIsComponentVisible } =
     useComponentVisible(false);
 
-  // Closes gamehelp menu if the user clicks outside of it.
-  useEffect(() => {
-    if (isOpen) {
-      setIsComponentVisible(true);
-    }
-  }, [isOpen]);
+  const [screenPosition, setScreenPosition] = useState(
+    (document.querySelector("html").clientWidth -
+      document.querySelector("html").clientWidth * 0.7) /
+      2
+  );
 
   useEffect(() => {
-    if (isOpen && !isComponentVisible) {
-      closeFunc("gamehelp");
+    window.addEventListener("resize", setScreenX, true);
+    return () => {
+      window.removeEventListener("resize", setScreenX, true);
+    };
+  }, []);
+
+  // Closes gamehelp menu if the user clicks outside of it.
+  useEffect(() => {
+    if (open === "gamehelp") {
+      setIsComponentVisible(true);
+    }
+  }, [open]);
+
+  useEffect(() => {
+    if (open === "gamehelp" && !isComponentVisible) {
+      setOpen(null);
     }
   }, [isComponentVisible]);
+
+  const setScreenX = (e) => {
+    setScreenPosition(
+      (document.querySelector("html").clientWidth -
+        document.querySelector("html").clientWidth * 0.7) /
+        2
+    );
+  };
 
   return (
     <div
       id="gamehelp-component"
-      className={isOpen ? "open-flex" : ""}
+      className={open === "gamehelp" ? "open-flex" : ""}
       ref={ref}
       data-testid="gamehelp-screen"
-      style={{ left: gamescreenPosition }}
+      style={{ left: screenPosition }}
     >
       <div id="gamehelp-header">
         <h2 id="gamehelp-heading">GAME HELP</h2>
         <button
           id="gamehelp-exit-btn"
           onClick={() => {
-            closeFunc("gamehelp");
+            setOpen(null);
           }}
           data-testid="gamehelp-exit-btn"
         >
