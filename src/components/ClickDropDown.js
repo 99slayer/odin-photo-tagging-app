@@ -9,6 +9,7 @@ export const ClickDropDown = (props) => {
     <div
       id="click-drop-down-component"
       className={displayDropDown ? "open-flex" : "close"}
+      data-testid="drop-down"
       style={{
         top: dropDownPosition.y - 60 / 2 - 80,
         left: dropDownPosition.x - 60 / 2,

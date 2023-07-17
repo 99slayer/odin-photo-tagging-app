@@ -50,6 +50,7 @@ export const Image = (props) => {
           }
         }
       };
+
       const mouseUpPos = {
         x: e.clientX,
         y: e.clientY,
@@ -82,6 +83,11 @@ export const Image = (props) => {
       y: e.pageY,
     };
 
+    if (!clickCoordinates.x && !clickCoordinates.y) {
+      clickCoordinates.x = 0;
+      clickCoordinates.y = 0;
+    }
+
     setDisplayDropDown(true);
     setDropDownPosition({
       x: clickCoordinates.x,
@@ -93,7 +99,7 @@ export const Image = (props) => {
     <div
       id="image-cont"
       className={gameStart ? "open-flex" : "closed"}
-      data-testid="main-cont"
+      data-testid="image-cont"
     >
       <img
         src="Cutiezor.png"
