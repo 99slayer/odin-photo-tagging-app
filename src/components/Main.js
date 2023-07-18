@@ -1,16 +1,18 @@
 import React, { useState, useEffect } from "react";
+import "../styles/Main.css";
 import { Start } from "./Start";
 import { ZoomButtons } from "./ZoomButtons";
 import { Targets } from "./Targets";
 import { GameScreen } from "./GameScreen";
 import { Image } from "./Image";
 import { ClickDropDown } from "./ClickDropDown";
-import "../styles/Main.css";
+import { coordinates } from "../coordinates";
+import { targetPositions } from "../targetPositions";
 
 export const Main = (props) => {
-  const { changeWidth, checkImgWidth, gameStart, setGameStart, verifyTarget } =
-    props;
+  const { changeWidth, checkImgWidth } = props;
 
+  const [gameStart, setGameStart] = useState(false);
   const [imgWidth, setImgWidth] = useState(null);
   const [displayDropDown, setDisplayDropDown] = useState(false);
   const [gamescreenOpen, setGamescreenOpen] = useState(false);
@@ -19,7 +21,7 @@ export const Main = (props) => {
     y: null,
   });
 
-  // Lets the app component know if the image size changes.
+  // Lets the App component know if the image size changes.
   useEffect(() => {
     checkImgWidth(document.querySelector("html").clientWidth, imgWidth);
   }, [imgWidth]);
@@ -32,6 +34,26 @@ export const Main = (props) => {
       }
     });
   }, []);
+
+  const verifyTarget = (coords, target) => {
+    switch (target) {
+      case "chameleon":
+        console.log(coordinates.validate(targetPositions.chameleon, coords));
+        break;
+
+      case "donkey":
+        console.log(coordinates.validate(targetPositions.donkey, coords));
+        break;
+
+      case "cat":
+        console.log(coordinates.validate(targetPositions.cat, coords));
+        break;
+
+      default:
+        console.error("Invalid target parameter.");
+        break;
+    }
+  };
 
   return (
     <div id="main-component" data-testid="main-component">
