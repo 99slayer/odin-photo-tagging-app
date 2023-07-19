@@ -5,6 +5,15 @@ import { coordinates } from "../coordinates";
 export const ClickDropDown = (props) => {
   const { displayDropDown, dropDownPosition, verifyTarget } = props;
 
+  const dropdownConvert = (x) => {
+    const imageSize = {
+      width: document.getElementById("image").offsetWidth,
+      height: document.getElementById("image").offsetHeight,
+    };
+
+    return coordinates.convert(x, imageSize);
+  };
+
   return (
     <div
       id="click-drop-down-component"
@@ -20,13 +29,7 @@ export const ClickDropDown = (props) => {
         <button
           className="drop-down-btn"
           onClick={() => {
-            verifyTarget(
-              coordinates.convert(dropDownPosition, {
-                width: document.getElementById("image").offsetWidth,
-                height: document.getElementById("image").offsetHeight,
-              }),
-              "chameleon"
-            );
+            verifyTarget(dropdownConvert(dropDownPosition), "chameleon");
           }}
         >
           Chameleon
@@ -35,13 +38,7 @@ export const ClickDropDown = (props) => {
         <button
           className="drop-down-btn"
           onClick={() => {
-            verifyTarget(
-              coordinates.convert(dropDownPosition, {
-                width: document.getElementById("image").offsetWidth,
-                height: document.getElementById("image").offsetHeight,
-              }),
-              "donkey"
-            );
+            verifyTarget(dropdownConvert(dropDownPosition), "donkey");
           }}
         >
           Donkey
@@ -50,13 +47,7 @@ export const ClickDropDown = (props) => {
         <button
           className="drop-down-btn"
           onClick={() => {
-            verifyTarget(
-              coordinates.convert(dropDownPosition, {
-                width: document.getElementById("image").offsetWidth,
-                height: document.getElementById("image").offsetHeight,
-              }),
-              "cat"
-            );
+            verifyTarget(dropdownConvert(dropDownPosition), "cat");
           }}
         >
           Cat
