@@ -4,17 +4,46 @@ import userEvent from "@testing-library/user-event";
 import "@testing-library/jest-dom";
 import { Main } from "../components/Main";
 
-describe("main component", () => {
-  describe("start-cont", () => {
-    it("closes start-cont and opens main-cont on start btn click", () => {
-      render(<Main />);
-      expect(screen.getByTestId('start-cont')).toHaveClass('open-flex');
-      expect(screen.getByTestId('main-cont')).toHaveClass('closed');
+describe("Main component.", () => {
+  let mockAppWidth = 0;
+  const mockChangeAppWidth = () => {
+    // ...
+  };
+
+  beforeEach(() => {
+    render(
+      <Main appWidth={mockAppWidth} changeAppWidth={mockChangeAppWidth} />
+    );
+    act(() => {
+      userEvent.click(screen.getByRole("button", { name: "START" }));
+    });
+  });
+
+  describe("Image component.", () => {
+    it("Opens the target dropdown on click.", () => {
+      expect(screen.getByTestId("drop-down")).not.toHaveClass("open-flex");
+
       act(() => {
-        userEvent.click(screen.getByRole('button', { name: 'START' }));
-      })
-      expect(screen.getByTestId('start-cont')).toHaveClass('closed');
-      expect(screen.getByTestId('main-cont')).toHaveClass('open-flex');
+        userEvent.click(screen.getByTestId("image"));
+      });
+
+      expect(screen.getByTestId("drop-down")).toHaveClass("open-flex");
+    });
+
+    it("Closes the target dropdown when the user clicks outside of it.", () => {
+      expect(screen.getByTestId("drop-down")).not.toHaveClass("open-flex");
+
+      act(() => {
+        userEvent.click(screen.getByTestId("image"));
+      });
+
+      expect(screen.getByTestId("drop-down")).toHaveClass("open-flex");
+
+      act(() => {
+        userEvent.click(screen.getByTestId("image"));
+      });
+
+      expect(screen.getByTestId("drop-down")).not.toHaveClass("open-flex");
     });
   });
 });
