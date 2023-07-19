@@ -10,7 +10,7 @@ import { coordinates } from "../coordinates";
 import { targetPositions } from "../targetPositions";
 
 export const Main = (props) => {
-  const { changeWidth, checkImgWidth } = props;
+  const { appWidth, changeAppWidth } = props;
 
   const [gameStart, setGameStart] = useState(false);
   const [imgWidth, setImgWidth] = useState(null);
@@ -23,7 +23,7 @@ export const Main = (props) => {
 
   // Lets the App component know if the image size changes.
   useEffect(() => {
-    checkImgWidth(document.querySelector("html").clientWidth, imgWidth);
+    changeAppWidth(document.querySelector("html").clientWidth, imgWidth);
   }, [imgWidth]);
 
   // Closes dropdown if you click anywhere outside of the image.
@@ -59,9 +59,9 @@ export const Main = (props) => {
     <div id="main-component" data-testid="main-component">
       <Start setGameStart={setGameStart} />
       <ZoomButtons setImgWidth={setImgWidth} gameStart={gameStart} />
-      <Targets changeWidth={changeWidth} gameStart={gameStart} />
+      <Targets appWidth={appWidth} gameStart={gameStart} />
       <GameScreen
-        changeWidth={changeWidth}
+        appWidth={appWidth}
         gameStart={gameStart}
         setGamescreenOpen={setGamescreenOpen}
       />

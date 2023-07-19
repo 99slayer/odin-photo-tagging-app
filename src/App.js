@@ -5,23 +5,20 @@ import { Main } from "./components/Main";
 import { Footer } from "./components/Footer";
 
 function App() {
-  const [changeWidth, setChangeWidth] = useState(false);
+  const [appWidth, setAppWidth] = useState(false);
 
-  const checkImgWidth = (windowWidth, imageWidth) => {
+  const changeAppWidth = (windowWidth, imageWidth) => {
     if (imageWidth > windowWidth) {
-      setChangeWidth(true);
+      setAppWidth(true);
     } else if (imageWidth <= windowWidth) {
-      setChangeWidth(false);
+      setAppWidth(false);
     }
   };
 
   return (
-    <div id="app-component" className={changeWidth ? "app-max" : ""}>
+    <div id="app-component" className={appWidth ? "app-max" : ""}>
       <Header />
-      <Main
-        changeWidth={changeWidth}
-        checkImgWidth={checkImgWidth}
-      />
+      <Main appWidth={appWidth} changeAppWidth={changeAppWidth} />
       <Footer />
     </div>
   );

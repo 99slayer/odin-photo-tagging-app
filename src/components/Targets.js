@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "../styles/Targets.css";
 
 export const Targets = (props) => {
-  const { changeWidth, gameStart } = props;
+  const { appWidth, gameStart } = props;
 
   const [position, setPosition] = useState({
     x: null,
@@ -11,7 +11,7 @@ export const Targets = (props) => {
 
   useEffect(() => {
     setX();
-  }, [changeWidth, gameStart]);
+  }, [appWidth, gameStart]);
 
   useEffect(() => {
     window.addEventListener("resize", setX, true);
@@ -52,6 +52,7 @@ export const Targets = (props) => {
     <div
       id="target-cont"
       className={gameStart ? "open-flex" : "closed"}
+      data-testid={"target-cont"}
       style={{
         left: `${position.x}px`,
         top: `${position.y}px`,

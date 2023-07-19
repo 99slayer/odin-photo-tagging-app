@@ -4,7 +4,7 @@ import { GameHelp } from "./GameHelp";
 import "../styles/GameScreen.css";
 
 export const GameScreen = (props) => {
-  const { changeWidth, gameStart, setGamescreenOpen } = props;
+  const { appWidth, gameStart, setGamescreenOpen } = props;
 
   const [open, setOpen] = useState(null);
   const [btnPosition, setBtnPosition] = useState({
@@ -14,7 +14,7 @@ export const GameScreen = (props) => {
 
   useEffect(() => {
     setBtnX();
-  }, [changeWidth, gameStart]);
+  }, [appWidth, gameStart]);
 
   useEffect(() => {
     window.addEventListener("resize", setBtnX, true);
