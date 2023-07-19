@@ -104,6 +104,7 @@ export const Image = (props) => {
       <img
         src="Cutiezor.png"
         id="image"
+        data-testid="image"
         style={{ width: imgWidth }}
         draggable="true"
         onMouseDown={handleMouseDown}

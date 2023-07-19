@@ -4,7 +4,6 @@ import "../styles/Start.css";
 export const Start = (props) => {
   const { setGameStart } = props;
 
-  // Moved Start components own logic into itself <= START HERE
   const [open, setOpen] = useState(true);
 
   useEffect(() => {
