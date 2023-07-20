@@ -7,7 +7,8 @@ import { GameScreen } from "./GameScreen";
 import { Image } from "./Image";
 import { ClickDropDown } from "./ClickDropDown";
 import { coordinates } from "../coordinates";
-import { targetPositions } from "../targetPositions";
+// import { targetPositions } from "../targetPositions";
+import { getTarget } from "../firebase-config";
 
 export const Main = (props) => {
   const { appWidth, changeAppWidth } = props;
@@ -35,24 +36,14 @@ export const Main = (props) => {
     });
   }, []);
 
-  const verifyTarget = (coords, target) => {
-    switch (target) {
-      case "chameleon":
-        console.log(coordinates.validate(targetPositions.chameleon, coords));
-        break;
+  const verifyTarget = async (coords, target) => {
+    let x = await coordinates.validate(
+      getTarget(`${target}`),
+      coords
+    );
 
-      case "donkey":
-        console.log(coordinates.validate(targetPositions.donkey, coords));
-        break;
-
-      case "cat":
-        console.log(coordinates.validate(targetPositions.cat, coords));
-        break;
-
-      default:
-        console.error("Invalid target parameter.");
-        break;
-    }
+    console.log(x);
+    return x;
   };
 
   return (
