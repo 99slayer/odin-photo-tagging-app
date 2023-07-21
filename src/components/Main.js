@@ -21,6 +21,19 @@ export const Main = (props) => {
     x: null,
     y: null,
   });
+  const [hits, setHits] = useState({
+    targetOne: false,
+    targetTwo: false,
+    targetThree: false,
+  });
+
+  useEffect(() => {
+    console.log(hits);
+    if (Object.keys(hits).every((x) => hits[x] === true)) {
+      // GAME WON
+      console.log("game over!");
+    }
+  }, [hits]);
 
   // Lets the App component know if the image size changes.
   useEffect(() => {
@@ -37,20 +50,57 @@ export const Main = (props) => {
   }, []);
 
   const verifyTarget = async (coords, target) => {
-    let x = await coordinates.validate(
-      getTarget(`${target}`),
-      coords
-    );
+    let isHit = await coordinates.validate(getTarget(`${target}`), coords);
 
-    console.log(x);
-    return x;
+    console.log(isHit);
+
+    if (isHit) {
+      switch (target) {
+        case "Chameleon":
+          if (hits.targetOne) {
+            break;
+          }
+
+          setHits((prev) => ({
+            ...prev,
+            targetOne: true,
+          }));
+          break;
+
+        case "Donkey":
+          if (hits.targetTwo) {
+            break;
+          }
+
+          setHits((prev) => ({
+            ...prev,
+            targetTwo: true,
+          }));
+          break;
+
+        case "Cat":
+          if (hits.targetThree) {
+            break;
+          }
+
+          setHits((prev) => ({
+            ...prev,
+            targetThree: true,
+          }));
+          break;
+
+        default:
+          console.error("Invalid target parameter.");
+          break;
+      }
+    }
   };
 
   return (
     <div id="main-component" data-testid="main-component">
       <Start setGameStart={setGameStart} />
       <ZoomButtons setImgWidth={setImgWidth} gameStart={gameStart} />
-      <Targets appWidth={appWidth} gameStart={gameStart} />
+      <Targets appWidth={appWidth} gameStart={gameStart} hits={hits} />
       <GameScreen
         appWidth={appWidth}
         gameStart={gameStart}
