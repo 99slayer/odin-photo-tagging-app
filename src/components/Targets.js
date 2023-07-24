@@ -2,12 +2,19 @@ import React, { useState, useEffect } from "react";
 import "../styles/Targets.css";
 
 export const Targets = (props) => {
-  const { appWidth, gameStart } = props;
+  const { appWidth, gameStart, gameEnded, hits } = props;
 
   const [position, setPosition] = useState({
     x: null,
     y: 80,
   });
+
+  useEffect(() => {
+    setPosition({
+      x: null,
+      y: 80,
+    });
+  }, [gameEnded]);
 
   useEffect(() => {
     setX();
@@ -58,9 +65,15 @@ export const Targets = (props) => {
         top: `${position.y}px`,
       }}
     >
-      <div className="target">Pick Chameleon</div>
-      <div className="target">Donkey Wearing a Hat</div>
-      <div className="target">Black and White Cat</div>
+      <div className={`${hits.targetOne ? "wasHit" : ""} target`}>
+        Pink Chameleon
+      </div>
+      <div className={`${hits.targetTwo ? "wasHit" : ""} target`}>
+        Donkey Wearing a Hat
+      </div>
+      <div className={`${hits.targetThree ? "wasHit" : ""} target`}>
+        Black and White Cat
+      </div>
     </div>
   );
 };

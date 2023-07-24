@@ -4,13 +4,20 @@ import { GameHelp } from "./GameHelp";
 import "../styles/GameScreen.css";
 
 export const GameScreen = (props) => {
-  const { appWidth, gameStart, setGamescreenOpen } = props;
+  const { appWidth, gameStart, gameEnded, setGamescreenOpen } = props;
 
   const [open, setOpen] = useState(null);
   const [btnPosition, setBtnPosition] = useState({
     x: document.querySelector("html").clientWidth - 60,
     y: 80,
   });
+
+  useEffect(() => {
+    setBtnPosition({
+      x: document.querySelector("html").clientWidth - 60,
+      y: 80,
+    });
+  }, [gameEnded]);
 
   useEffect(() => {
     setBtnX();

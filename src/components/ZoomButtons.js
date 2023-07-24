@@ -2,9 +2,13 @@ import React, { useState, useEffect } from "react";
 import "../styles/ZoomButtons.css";
 
 export const ZoomButtons = (props) => {
-  const { setImgWidth, gameStart } = props;
+  const { setImgWidth, gameStart, gameEnded } = props;
 
   const [position, setPosition] = useState(80);
+
+  useEffect(() => {
+    setPosition(80);
+  }, [gameEnded]);
 
   useEffect(() => {
     window.addEventListener("scroll", setY, true);
