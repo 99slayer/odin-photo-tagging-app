@@ -1,0 +1,16 @@
+#timer-cont {
+  position: fixed;
+  bottom: 30px;
+  display: none;
+  justify-content: flex-start;
+  align-items: center;
+  width: 160px;
+  padding: 4px 10px 4px 10px;
+  background-color: rgb(163, 163, 163);
+  border-radius: 8px;
+}
+
+#timer {
+  font-size: 2em;
+  color: white;
+}
