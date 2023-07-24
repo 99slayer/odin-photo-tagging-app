@@ -6,14 +6,15 @@ import { Targets } from "./Targets";
 import { GameScreen } from "./GameScreen";
 import { Image } from "./Image";
 import { ClickDropDown } from "./ClickDropDown";
+import { EndScreen } from "./EndScreen";
 import { coordinates } from "../coordinates";
-// import { targetPositions } from "../targetPositions";
 import { getTarget } from "../firebase-config";
 
 export const Main = (props) => {
-  const { appWidth, changeAppWidth } = props;
+  const { appWidth, setAppWidth, changeAppWidth } = props;
 
   const [gameStart, setGameStart] = useState(false);
+  const [gameEnded, setGameEnded] = useState(false);
   const [imgWidth, setImgWidth] = useState(null);
   const [displayDropDown, setDisplayDropDown] = useState(false);
   const [gamescreenOpen, setGamescreenOpen] = useState(false);
@@ -28,10 +29,9 @@ export const Main = (props) => {
   });
 
   useEffect(() => {
-    console.log(hits);
     if (Object.keys(hits).every((x) => hits[x] === true)) {
-      // GAME WON
-      console.log("game over!");
+      console.info("Game ended.");
+      endGame();
     }
   }, [hits]);
 
@@ -96,14 +96,40 @@ export const Main = (props) => {
     }
   };
 
+  const endGame = () => {
+    setAppWidth(false);
+    setGameStart(false);
+    setGameEnded(true);
+  };
+
+  const resetGame = () => {
+    setGameStart(true);
+    setGameEnded(false);
+    setHits({
+      targetOne: false,
+      targetTwo: false,
+      targetThree: false,
+    });
+  };
+
   return (
     <div id="main-component" data-testid="main-component">
       <Start setGameStart={setGameStart} />
-      <ZoomButtons setImgWidth={setImgWidth} gameStart={gameStart} />
-      <Targets appWidth={appWidth} gameStart={gameStart} hits={hits} />
+      <ZoomButtons
+        setImgWidth={setImgWidth}
+        gameStart={gameStart}
+        gameEnded={gameEnded}
+      />
+      <Targets
+        appWidth={appWidth}
+        gameStart={gameStart}
+        gameEnded={gameEnded}
+        hits={hits}
+      />
       <GameScreen
         appWidth={appWidth}
         gameStart={gameStart}
+        gameEnded={gameEnded}
         setGamescreenOpen={setGamescreenOpen}
       />
       <Image
@@ -119,6 +145,7 @@ export const Main = (props) => {
         dropDownPosition={dropDownPosition}
         verifyTarget={verifyTarget}
       />
+      <EndScreen gameEnded={gameEnded} resetGame={resetGame} />
     </div>
   );
 };
