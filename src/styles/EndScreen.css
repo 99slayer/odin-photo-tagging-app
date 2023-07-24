@@ -1,0 +1,10 @@
+#end-screen {
+  height: 400px;
+  margin: 20px;
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+  background-color: gray;
+}
