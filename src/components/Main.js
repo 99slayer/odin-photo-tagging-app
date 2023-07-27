@@ -7,7 +7,8 @@ import { GameScreen } from "./GameScreen";
 import { Image } from "./Image";
 import { ClickDropDown } from "./ClickDropDown";
 import { EndScreen } from "./EndScreen";
-import { coordinates } from "../coordinates";
+import { Timer } from "./Timer";
+import { coordinates } from "../utils/coordinates";
 import { getTarget } from "../firebase-config";
 
 export const Main = (props) => {
@@ -27,6 +28,7 @@ export const Main = (props) => {
     targetTwo: false,
     targetThree: false,
   });
+  const [finalTime, setFinalTime] = useState(null);
 
   useEffect(() => {
     if (Object.keys(hits).every((x) => hits[x] === true)) {
@@ -145,7 +147,17 @@ export const Main = (props) => {
         dropDownPosition={dropDownPosition}
         verifyTarget={verifyTarget}
       />
-      <EndScreen gameEnded={gameEnded} resetGame={resetGame} />
+      <Timer
+        appWidth={appWidth}
+        gameStart={gameStart}
+        gameEnded={gameEnded}
+        setFinalTime={setFinalTime}
+      />
+      <EndScreen
+        gameEnded={gameEnded}
+        resetGame={resetGame}
+        finalTime={finalTime}
+      />
     </div>
   );
 };
