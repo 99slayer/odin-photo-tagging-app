@@ -8,3 +8,16 @@
   border-radius: 20px;
   background-color: gray;
 }
+
+#submission-cont {
+}
+
+#name-input {
+}
+
+#submit-score-btn {
+}
+
+#submitted-cont {
+  display: none;
+}
