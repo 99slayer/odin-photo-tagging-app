@@ -43,7 +43,7 @@ export const ZoomButtons = (props) => {
       document.getElementById("image").offsetWidth - 500 <
       document.querySelector("html").clientWidth
     ) {
-      setImgWidth("100%");
+      setImgWidth(document.querySelector("html").clientWidth);
     } else {
       setImgWidth(document.getElementById("image").offsetWidth - 500);
     }
