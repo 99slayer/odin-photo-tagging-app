@@ -3,19 +3,21 @@ import { HighScores } from "./HighScores";
 import { GameHelp } from "./GameHelp";
 import "../styles/GameScreen.css";
 
+const initialPosition = 90;
+
 export const GameScreen = (props) => {
   const { appWidth, gameStart, gameEnded, setGamescreenOpen } = props;
 
   const [open, setOpen] = useState(null);
   const [btnPosition, setBtnPosition] = useState({
     x: document.querySelector("html").clientWidth - 60,
-    y: 80,
+    y: initialPosition,
   });
 
   useEffect(() => {
     setBtnPosition({
       x: document.querySelector("html").clientWidth - 60,
-      y: 80,
+      y: initialPosition,
     });
   }, [gameEnded]);
 
@@ -47,30 +49,31 @@ export const GameScreen = (props) => {
         ...prev,
         x:
           window.innerWidth -
-          (60 +
+          (70 +
             (window.innerWidth - document.querySelector("html").clientWidth)),
       }));
     } else {
       setBtnPosition((prev) => ({
         ...prev,
-        x: document.querySelector("html").clientWidth - 60,
+        x: document.querySelector("html").clientWidth - 70,
       }));
     }
   };
 
   const setBtnY = (e) => {
-    const headerHeight = 80;
-    let headerOffset;
+    let offset;
 
-    if (window.scrollY > headerHeight) {
-      headerOffset = 0;
+    if (window.scrollY > initialPosition) {
+      offset = 0;
     } else if (window.scrollY > 0) {
-      headerOffset = Math.round(headerHeight - window.scrollY);
+      offset = Math.round(initialPosition - window.scrollY);
+    } else {
+      offset = initialPosition;
     }
 
     setBtnPosition((prev) => ({
       ...prev,
-      y: headerOffset,
+      y: offset,
     }));
   };
 
@@ -93,6 +96,7 @@ export const GameScreen = (props) => {
           onClick={() => {
             setOpen("highscores");
           }}
+          title="highscores"
         >
           <span className="material-symbols-outlined">sort</span>
         </button>
@@ -103,11 +107,12 @@ export const GameScreen = (props) => {
           onClick={() => {
             setOpen("gamehelp");
           }}
+          title="game help"
         >
           <span className="material-symbols-outlined">info</span>
         </button>
       </div>
-      <HighScores open={open} setOpen={setOpen} />
+      <HighScores open={open} setOpen={setOpen} gameStart={gameStart} />
       <GameHelp open={open} setOpen={setOpen} />
     </div>
   );

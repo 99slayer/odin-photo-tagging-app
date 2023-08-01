@@ -1,18 +1,20 @@
 import React, { useState, useEffect } from "react";
 import "../styles/Targets.css";
 
+const initialPosition = 90;
+
 export const Targets = (props) => {
   const { appWidth, gameStart, gameEnded, hits } = props;
 
   const [position, setPosition] = useState({
     x: null,
-    y: 80,
+    y: initialPosition,
   });
 
   useEffect(() => {
     setPosition({
       x: null,
-      y: 80,
+      y: initialPosition,
     });
   }, [gameEnded]);
 
@@ -40,18 +42,19 @@ export const Targets = (props) => {
   };
 
   const setY = (e) => {
-    const headerHeight = 80;
-    let headerOffset;
+    let offset;
 
-    if (window.scrollY > headerHeight) {
-      headerOffset = 0;
+    if (window.scrollY > initialPosition) {
+      offset = 0;
     } else if (window.scrollY > 0) {
-      headerOffset = Math.round(headerHeight - window.scrollY);
+      offset = Math.round(initialPosition - window.scrollY);
+    } else {
+      offset = initialPosition;
     }
 
     setPosition((prev) => ({
       ...prev,
-      y: headerOffset,
+      y: offset,
     }));
   };
 
@@ -66,13 +69,13 @@ export const Targets = (props) => {
       }}
     >
       <div className={`${hits.targetOne ? "wasHit" : ""} target`}>
-        Pink Chameleon
+        Noah&apos;s Ark
       </div>
       <div className={`${hits.targetTwo ? "wasHit" : ""} target`}>
-        Donkey Wearing a Hat
+        Loch Ness Monster
       </div>
       <div className={`${hits.targetThree ? "wasHit" : ""} target`}>
-        Black and White Cat
+        Giant Spider
       </div>
     </div>
   );
