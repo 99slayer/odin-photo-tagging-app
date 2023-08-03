@@ -7,7 +7,7 @@ export const Footer = () => {
       <a
         id="github-link"
         className="footer-element"
-        href="https://github.com/99slayer"
+        href="https://github.com/99slayer/odin-photo-tagging-app"
         target="_blank"
         rel="noopener noreferrer"
         title="github"
