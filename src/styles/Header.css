@@ -4,10 +4,11 @@
   padding: 10px;
   display: flex;
   align-items: center;
-  background-color: rgb(20, 213, 219);
+  background-color: var(--main-bg-color);
 }
 
 #heading {
-  font-size: 3em;
-  color: white;
+  margin-left: 10px;
+  font-size: 3.6em;
+  font-weight: 500;
 }

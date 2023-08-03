@@ -3,10 +3,9 @@
   top: 110px;
   height: 600px;
   width: 70%;
-  padding: 10px;
+  padding: 20px;
   display: none;
   flex-direction: column;
-  color: white;
   background-color: rgba(61, 61, 61, 0.952);
   border-radius: 20px;
 }
@@ -18,6 +17,7 @@
 
 #gamehelp-heading {
   margin-left: auto;
+  font-size: 2.2em;
 }
 
 #gamehelp-exit-btn {
@@ -25,15 +25,30 @@
   width: 30px;
   height: 30px;
   color: white;
+  font-family: Arial, Helvetica, sans-serif;
   font-size: 1.2em;
   font-weight: 700;
   text-align: center;
-  background-color: rgb(255, 12, 12);
+  background-color: #cc241d;
   border: none;
   border-radius: 4px;
 }
 
 #gamehelp-exit-btn:hover {
   cursor: pointer;
-  background-color: rgb(165, 20, 20);
+  background-color: #fb4934;
+}
+
+#gamehelp-info {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px;
+  font-size: 1.5em;
+  font-weight: 400;
+}
+
+#gamehelp-hr {
+  width: 100%;
 }

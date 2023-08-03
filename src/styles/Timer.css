@@ -6,11 +6,10 @@
   align-items: center;
   width: 160px;
   padding: 4px 10px 4px 10px;
-  background-color: rgb(163, 163, 163);
+  background-color: var(--main-bg-color);
   border-radius: 8px;
 }
 
 #timer {
   font-size: 2em;
-  color: white;
 }

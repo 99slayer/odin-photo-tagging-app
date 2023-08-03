@@ -1,23 +1,106 @@
 #end-screen {
-  height: 400px;
-  margin: 20px;
+  align-self: center;
+  justify-self: center;
+  margin: 100px 10px 0px 10px;
+  padding: 20px 60px 20px 60px;
+  min-height: 235px;
+  min-width: 450px;
   display: none;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   border-radius: 20px;
-  background-color: gray;
+  background-color: var(--main-bg-color);
+  box-shadow: 29px 29px 58px #342e2d, -29px -29px 58px #463e3b;
+}
+
+#end-screen-heading {
+  font-size: 2.2em;
+}
+
+#end-screen-time {
+  font-size: 1.6em;
+  font-weight: 500;
 }
 
 #submission-cont {
+  margin-top: 20px;
+  display: none;
+  gap: 10px;
 }
 
 #name-input {
+  padding-left: 4px;
+  color: #6c7075;
+  font-size: 1.2em;
+  font-weight: 700;
+  outline: none;
 }
 
 #submit-score-btn {
+  /* ----------------------------------- */
+  --key-text-color: #6c7075;
+  --docsearch-key-shadow: inset 0 -2px 0 0 #cdcde6, inset 0 0 1px 1px #fff,
+    0 1px 2px 1px rgba(30, 35, 90, 0.4);
+  --docsearch-key-gradient: linear-gradient(-225deg, #d5dbe4, #f8f8f8);
+  border: none;
+  background: var(--docsearch-key-gradient);
+  border-radius: 5px;
+  box-shadow: var(--docsearch-key-shadow);
+  color: var(--key-text-color);
+  height: 1.8em;
+  text-align: center;
+  padding-right: 0.9em;
+  padding-left: 0.9em;
+  display: inline-block;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 1.1em;
+  min-width: 1em;
+  line-height: 1em;
+  user-select: none;
+  /* ----------------------------------- */
+}
+
+#submit-score-btn:hover {
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px,
+    rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+  cursor: pointer;
 }
 
 #submitted-cont {
   display: none;
+  margin-top: 20px;
+}
+
+#new-game-btn {
+  margin-top: 20px;
+  /* ----------------------------------- */
+  --key-text-color: #6c7075;
+  --docsearch-key-shadow: inset 0 -2px 0 0 #cdcde6, inset 0 0 1px 1px #fff,
+    0 1px 2px 1px rgba(30, 35, 90, 0.4);
+  --docsearch-key-gradient: linear-gradient(-225deg, #d5dbe4, #f8f8f8);
+  border: none;
+  background: var(--docsearch-key-gradient);
+  border-radius: 5px;
+  box-shadow: var(--docsearch-key-shadow);
+  color: var(--key-text-color);
+  height: 1.8em;
+  text-align: center;
+  padding-right: 0.9em;
+  padding-left: 0.9em;
+  display: inline-block;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 1.6em;
+  min-width: 1em;
+  line-height: 1em;
+  user-select: none;
+  /* ----------------------------------- */
+}
+
+#new-game-btn:hover {
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px,
+    rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+  cursor: pointer;
 }

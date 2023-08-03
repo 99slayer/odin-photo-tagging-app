@@ -1,5 +1,4 @@
 #highscores-component {
-  /* add scroll bar and stuff later */
   position: fixed;
   top: 110px;
   height: 600px;
@@ -19,6 +18,7 @@
 
 #highscore-heading {
   margin-left: auto;
+  font-size: 2.2em;
 }
 
 #highscore-exit-btn {
@@ -26,17 +26,18 @@
   width: 30px;
   height: 30px;
   color: white;
+  font-family: Arial, Helvetica, sans-serif;
   font-size: 1.2em;
   font-weight: 700;
   text-align: center;
-  background-color: rgb(255, 12, 12);
+  background-color: #cc241d;
   border: none;
   border-radius: 4px;
 }
 
 #highscore-exit-btn:hover {
   cursor: pointer;
-  background-color: rgb(165, 20, 20);
+  background-color: #fb4934;
 }
 
 #highscore-list {
@@ -56,6 +57,6 @@
   justify-content: space-between;
   padding: 10px;
   font-size: 2.6em;
-  background-color: gray;
+  background-color: var(--main-bg-color);
   border-radius: 10px;
 }

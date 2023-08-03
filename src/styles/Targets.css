@@ -2,20 +2,20 @@
   position: fixed;
   align-self: center;
   padding: 10px;
-  width: 700px;
   display: flex;
-  gap: 10px;
+  gap: 30px;
   align-items: center;
-  font-size: 1.2em;
-  color: white;
 }
 
 .target {
-  padding: 10px 20px 10px 20px;
-  background-color: gray;
+  padding: 8px 20px 8px 20px;
+  font-size: 1.5em;
+  font-weight: 500;
+  background-color: var(--main-bg-color);
   border-radius: 30px;
 }
 
 .wasHit {
   filter: brightness(60%);
+  outline: 4px solid rgb(54, 255, 54);
 }
