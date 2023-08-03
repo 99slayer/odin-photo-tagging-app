@@ -24,3 +24,7 @@ yarn-error.log*
 
 TODO.md
 .env
+
+/.firebase
+firestore.indexes.json
+firestore.rules
