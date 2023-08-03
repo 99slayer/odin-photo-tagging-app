@@ -63,7 +63,25 @@ export const GameHelp = (props) => {
         </button>
       </div>
       <div id="gamehelp-info">
-        <p>PLACEHOLDER</p>
+        <hr id="gamehelp-hr" />
+        <p>
+          • The objective of the game is to find the stated targets as fast as
+          you can.
+        </p>
+        <p>
+          • You should see the targets you have to find at the top of the
+          screen.
+        </p>
+        <p>• You can click and drag the mouse to navigate the game image.</p>
+        <p>
+          • If you think you&apos;ve found a target click on it, and select it
+          from the dropdown menu.
+        </p>
+        <p>
+          • If you need a closer view you can use the zoom buttons on the
+          lefthand side of the screen.
+        </p>
+        <p>• You can see your current time at the bottom of the screen.</p>
       </div>
     </div>
   );
