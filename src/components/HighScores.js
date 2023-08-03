@@ -3,10 +3,10 @@ import "../styles/HighScores.css";
 import uniqid from "uniqid";
 import useComponentVisible from "../hooks/useComponentVisible";
 import { clockify } from "../utils/clockify";
-import { getHighScores, addHighScore } from "../firebase-config";
+import { getHighScores } from "../firebase-config";
 
 export const HighScores = (props) => {
-  const { open, setOpen } = props;
+  const { open, setOpen, gameStart } = props;
 
   const { ref, isComponentVisible, setIsComponentVisible } =
     useComponentVisible(false);
@@ -14,9 +14,15 @@ export const HighScores = (props) => {
   const [screenPosition, setScreenPosition] = useState(
     (document.querySelector("html").clientWidth -
       document.querySelector("html").clientWidth * 0.7) /
-      2
+    2
   );
   const [scoresState, setScoresState] = useState(null);
+
+  useEffect(() => {
+    if (gameStart) {
+      updateHighScores();
+    }
+  }, [gameStart]);
 
   useEffect(() => {
     updateHighScores();
@@ -43,7 +49,7 @@ export const HighScores = (props) => {
     setScreenPosition(
       (document.querySelector("html").clientWidth -
         document.querySelector("html").clientWidth * 0.7) /
-        2
+      2
     );
   };
 
@@ -56,6 +62,10 @@ export const HighScores = (props) => {
 
   const createHighScores = () => {
     const highScoreElements = [];
+
+    if (!scoresState) {
+      return;
+    }
 
     scoresState.forEach((score, index) => {
       highScoreElements.push(
