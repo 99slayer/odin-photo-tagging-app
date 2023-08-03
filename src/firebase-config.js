@@ -1,4 +1,3 @@
-// Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import {
   getFirestore,
@@ -39,24 +38,26 @@ export const getHighScores = async () => {
   querySnapshot.forEach((doc) => {
     const data = doc.data();
     highScores.push({
-      time: data.time,
       name: data.name,
+      time: data.time,
     });
   });
 
   return highScores;
 };
 
-// SANITIZE INPUT !!
 export const addHighScore = async (name, time) => {
-  // time should be saved in milliseconds
-  const numberOfScores = await getHighScores().then((value) => {
-    return Object.keys(value).length;
-  });
+  if (name && time) {
+    const numberOfScores = await getHighScores().then((value) => {
+      return Object.keys(value).length;
+    });
 
-  // IN THE FUTURE ADD A TIME-STAMP FIELD
-  await setDoc(doc(db, "HighScores", `${numberOfScores + 1}`), {
-    name,
-    time,
-  });
+    await setDoc(doc(db, "HighScores", `${numberOfScores + 1}`), {
+      name,
+      time,
+    });
+  } else {
+    console.error("Invalid parameter.");
+    return;
+  }
 };
