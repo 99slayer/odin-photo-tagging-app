@@ -58,7 +58,7 @@ export const Main = (props) => {
 
     if (isHit) {
       switch (target) {
-        case "Chameleon":
+        case "Noah's Ark":
           if (hits.targetOne) {
             break;
           }
@@ -69,7 +69,7 @@ export const Main = (props) => {
           }));
           break;
 
-        case "Donkey":
+        case "Loch Ness Monster":
           if (hits.targetTwo) {
             break;
           }
@@ -80,7 +80,7 @@ export const Main = (props) => {
           }));
           break;
 
-        case "Cat":
+        case "Giant Spider":
           if (hits.targetThree) {
             break;
           }

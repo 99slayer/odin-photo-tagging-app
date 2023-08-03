@@ -18,7 +18,11 @@ function App() {
   return (
     <div id="app-component" className={appWidth ? "app-max" : ""}>
       <Header />
-      <Main appWidth={appWidth} changeAppWidth={changeAppWidth} />
+      <Main
+        appWidth={appWidth}
+        setAppWidth={setAppWidth}
+        changeAppWidth={changeAppWidth}
+      />
       <Footer />
     </div>
   );

@@ -1,6 +1,9 @@
 // Takes an amount of milliseconds and returns a string similar to how a stopwatch would look.
 export const clockify = (time) => {
-  // add some checks
+  if (!time) {
+    return;
+  }
+
   if (typeof time !== "number") {
     console.error("Invalid time parameter.");
     return;

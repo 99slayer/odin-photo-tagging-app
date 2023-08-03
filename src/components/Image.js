@@ -102,7 +102,7 @@ export const Image = (props) => {
       data-testid="image-cont"
     >
       <img
-        src="Cutiezor.png"
+        src="pixel-joint-prehistoria.png"
         id="image"
         data-testid="image"
         style={{ width: imgWidth }}

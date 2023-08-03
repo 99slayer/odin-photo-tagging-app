@@ -52,6 +52,7 @@ export const Timer = (props) => {
     return () => clearInterval(intervalID);
   }, [isRunning]);
 
+  // Time passed in milliseconds.
   const timePassed = current - start;
 
   // Centers timer component.
