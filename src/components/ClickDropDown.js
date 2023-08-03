@@ -1,6 +1,6 @@
 import React from "react";
 import "../styles/ClickDropDown.css";
-import { coordinates } from "../coordinates";
+import { coordinates } from "../utils/coordinates";
 
 export const ClickDropDown = (props) => {
   const { displayDropDown, dropDownPosition, verifyTarget } = props;
@@ -29,28 +29,31 @@ export const ClickDropDown = (props) => {
         <button
           className="drop-down-btn"
           onClick={() => {
-            verifyTarget(dropdownConvert(dropDownPosition), "chameleon");
+            verifyTarget(dropdownConvert(dropDownPosition), "Noah's Ark");
           }}
         >
-          Chameleon
+          Noah&apos;s Ark
         </button>
 
         <button
           className="drop-down-btn"
           onClick={() => {
-            verifyTarget(dropdownConvert(dropDownPosition), "donkey");
+            verifyTarget(
+              dropdownConvert(dropDownPosition),
+              "Loch Ness Monster"
+            );
           }}
         >
-          Donkey
+          Loch Ness Monster
         </button>
 
         <button
           className="drop-down-btn"
           onClick={() => {
-            verifyTarget(dropdownConvert(dropDownPosition), "cat");
+            verifyTarget(dropdownConvert(dropDownPosition), "Giant Spider");
           }}
         >
-          Cat
+          Giant Spider
         </button>
       </div>
     </div>
