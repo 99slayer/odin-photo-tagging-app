@@ -28,14 +28,17 @@ export const coordinates = {
     }
   },
   convert(coordinates, currentImageSize) {
-    const defaultWidth = 3030;
-    const defaultHeight = 1952;
-    const headerHeight = 80 + 10;
+    const defaultWidth = 1940;
+    const defaultHeight = 1732;
+    const headerHeight = 80;
+    const padding = 80;
     const convertedCoordinates = {
-      x: Math.round(defaultWidth * (coordinates.x / currentImageSize.width)),
+      x: Math.round(
+        defaultWidth * ((coordinates.x - padding) / currentImageSize.width)
+      ),
       y: Math.round(
         defaultHeight *
-          ((coordinates.y - headerHeight) / currentImageSize.height)
+          ((coordinates.y - padding - headerHeight) / currentImageSize.height)
       ),
     };
 
