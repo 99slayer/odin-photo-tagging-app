@@ -1,6 +1,7 @@
 # Odin Photo Tagging App
 
 - A photo search game built with react.
+- Live: https://odin-photo-tagging-app-99.web.app
 
 ## Goals
 
