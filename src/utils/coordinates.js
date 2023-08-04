@@ -38,7 +38,7 @@ export const coordinates = {
       ),
       y: Math.round(
         defaultHeight *
-          ((coordinates.y - padding - headerHeight) / currentImageSize.height)
+        ((coordinates.y - padding - headerHeight) / currentImageSize.height)
       ),
     };
 
